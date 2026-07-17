@@ -1,0 +1,14 @@
+{
+  "name": "@flancer32/alarisa-back-control",
+  "version": "0.1.0",
+  "description": "Functional reconnaissance for the Alarisa Control Plane message interpretation slice.",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "exports": "./src/index.mjs",
+  "scripts": {
+    "test": "node --test",
+    "probe": "node ./bin/probe.mjs"
+  }
+}
