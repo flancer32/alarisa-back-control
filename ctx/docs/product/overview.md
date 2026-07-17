@@ -16,4 +16,4 @@ This package must not expose HTTP, authenticate, persist production data, execut
 
 ## Authority
 
-The parent project context at `../../../../alarisa/ctx/docs/` defines Alarisa-wide product meaning. This document narrows only the accepted responsibility of `@flancer32/alarisa-back-control`.
+The parent project's [flancer32/alarisa-ctx](https://github.com/flancer32/alarisa-ctx/) `docs/` context defines Alarisa-wide product meaning. This document narrows only the accepted responsibility of `@flancer32/alarisa-back-control`.

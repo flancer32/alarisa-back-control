@@ -7,7 +7,7 @@ Defines the accepted meaning and limits of the Control Plane interpretation reco
 ## Level Map
 
 - `overview.md` — purpose, outcome, and exclusions.
-- `vocabulary.md` — stable terms used by all lower levels.
+- `glossary.md` — stable product terms used by all lower levels.
 
 ## Level Boundary
 
