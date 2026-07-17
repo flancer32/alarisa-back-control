@@ -1,0 +1,7 @@
+{
+  "representation": {"name":"Alex"}, "state": {}, "cases": [{"id":"case-a","title":"A"}],
+  "currentSession": {"id":"session-a","lastMessageAt":"2026-07-17T09:58:00.000Z","recentMessages":[],"pendingQuestions":["Use provider A or B?"],"expectedNextMove":"proceed"},
+  "messages": [{"id":"yes","content":"Yes","createdAt":"2026-07-17T09:59:00.000Z","channel":"mob"}],
+  "primaryResponses":{"yes":{"sessionAction":"continue","understoodMeaning":"Confirmation","communicativeIntent":"confirm","referencedEntities":[],"affectedCases":["case-a"],"semanticChanges":[],"signalCandidates":[],"ambiguities":["target unresolved"],"requiredNextMove":"proceed","confidenceEvidence":[],"processingMetadata":{}}},
+  "deepResponses":{"yes":{"sessionAction":"continue","understoodMeaning":"The confirmation remains ambiguous without the target.","communicativeIntent":"confirm","referencedEntities":[],"affectedCases":["case-a"],"semanticChanges":[],"signalCandidates":[],"ambiguities":[],"requiredNextMove":"clarify","confidenceEvidence":["two pending alternatives"],"processingMetadata":{}}}
+}
