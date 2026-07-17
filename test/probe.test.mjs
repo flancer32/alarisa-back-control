@@ -1,12 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {execFile} from "node:child_process";
-import {promisify} from "node:util";
-
-const exec = promisify(execFile);
+import fs from "node:fs/promises";
+import {createProbe} from "./Bootstrap.mjs";
 
 test("probe executes a deterministic escalation scenario", async () => {
-  const {stdout} = await exec(process.execPath, ["bin/probe.mjs", "scenarios/ambiguous-confirmation.json"]);
-  assert.match(stdout, /"deepInvoked": true/);
-  assert.match(stdout, /"decision": "clarify"/);
+  const scenario = JSON.parse(await fs.readFile("scenarios/ambiguous-confirmation.json", "utf8"));
+  const probe = await createProbe(scenario);
+  const result = await probe.interpretMessage({message: scenario.messages[0]});
+  assert.equal(Boolean(result.deep), true);
+  assert.equal(result.gate.decision, "clarify");
 });

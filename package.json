@@ -5,8 +5,17 @@
   "license": "UNLICENSED",
   "private": true,
   "type": "module",
+  "types": "types.d.ts",
   "engines": { "node": ">=20" },
-  "exports": "./src/index.mjs",
+  "exports": "./src/Plane.mjs",
+  "teqfw": {
+    "namespaces": [
+      {"prefix": "Alarisa_Back_Control_", "path": "./src", "ext": ".mjs"}
+    ]
+  },
+  "dependencies": {
+    "@teqfw/di": "^2.7.0"
+  },
   "scripts": {
     "test": "node --test",
     "probe": "node ./bin/probe.mjs"

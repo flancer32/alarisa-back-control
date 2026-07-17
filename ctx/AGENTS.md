@@ -8,10 +8,12 @@
 
 This directory is the ADSM cognitive context for the package.
 
-## Reading Map
+## Level Map
 
-Read `docs/filesystem.md`, then the documents relevant to the change. Product intent precedes architecture; architecture precedes environment and code conventions.
+- `docs/` — authoritative package documentation.
+- `AGENTS.md` — context reading and boundary instructions.
+- `adsm.json` — ADSM metadata.
 
-## Boundary
+## Level Boundary
 
-`docs/` contains authoritative package knowledge. `assets/` and `agent/`, if later added, are non-authoritative operational materials.
+Read `docs/filesystem.md`, then the documents relevant to the change. Product intent precedes architecture, which precedes environment and code conventions. `docs/` contains authoritative package knowledge; any future `assets/` or `agent/` material is non-authoritative and must not define package meaning.
