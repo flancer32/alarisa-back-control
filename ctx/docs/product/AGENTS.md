@@ -1,14 +1,18 @@
 # Product Documentation
 
+- Path: `ctx/docs/product/AGENTS.md`
+- Changed: `20260717`
+
 ## Purpose
 
-Defines the accepted meaning and limits of the Control Plane Message Interpreter module.
+Defines the accepted product meaning of the future Control Plane and its current Message Interpretation reconnaissance slice.
 
 ## Level Map
 
-- `overview.md` — purpose, outcome, and exclusions.
-- `glossary.md` — stable product terms used by all lower levels.
+- `domain.md` — objects, relationships, ownership, and invariants.
+- `glossary.md` — canonical product vocabulary.
+- `overview.md` and `overview.skin.md` — package purpose, scope, and its human-facing semantic control.
 
 ## Level Boundary
 
-Do not introduce authority, authentication-policy, persistence ownership, execution, or Signal-commit semantics here. Architecture may define an inbound HTTP adapter, but it must not turn this module into the global HTTP host or trust-policy owner.
+Define meaning, authority boundaries, and product invariants before architectural detail. Do not define source modules, HTTP routes, storage technology, model providers, or deployment here. Product terms must use `Message`, distinguish a provisional proposal from a Signal, and keep accepted decisions separate from research questions.

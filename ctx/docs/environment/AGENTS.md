@@ -1,8 +1,11 @@
 # Environment Documentation
 
+- Path: `ctx/docs/environment/AGENTS.md`
+- Changed: `20260717`
+
 ## Purpose
 
-Defines the intentionally small runtime boundary for deterministic verification of this backend module.
+Defines only runtime assumptions and operational measurement constraints relevant to this package.
 
 ## Level Map
 
@@ -10,4 +13,4 @@ Defines the intentionally small runtime boundary for deterministic verification 
 
 ## Level Boundary
 
-Document only conditions needed to run or verify this package. Deployment, HTTP listener hosting, authentication policy, databases, and provider-account operations belong to the host or their owning backend modules; this package may provide a pipeline handler for host registration.
+Do not define product meaning, package ownership, source-module design, deployment topology, provider accounts, or fixed production budgets here. Deployment, HTTP listener hosting, authentication policy, and durable storage belong to their owners.

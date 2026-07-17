@@ -1,5 +1,7 @@
 {
-  "templateVersion": "20260702",
-  "project": "@flancer32/alarisa-back-control",
-  "topology": "one-repository"
+  "schema": "adsm-context",
+  "version": "0.1.0",
+  "notes": [
+    "Cognitive context rebuilt for the Control Plane and Message Interpretation reconnaissance scope."
+  ]
 }

@@ -1,14 +1,22 @@
 # Architecture Documentation
 
+- Path: `ctx/docs/architecture/AGENTS.md`
+- Changed: `20260717`
+
 ## Purpose
 
-Defines the implementation responsibilities that realize the product-level Message Interpreter boundary.
+Refines accepted product meaning into the target Control Plane architecture and records the narrower exploratory implementation separately.
 
 ## Level Map
 
-- `overview.md` — component map and dependency direction.
-- `interpretation-flow.md` — deterministic processing and escalation rules.
+- `behavior.md` — interpretation flow and result handling.
+- `constraints.md` — non-negotiable architectural rules.
+- `decisions.md` — accepted decisions and explicit research questions.
+- `integration.md` — external and package boundaries.
+- `overview.md` and `overview.skin.md` — architecture entry point and human-facing semantic control.
+- `state.md` — logical and provider session state.
+- `structure.md` — component responsibilities and dependency direction.
 
 ## Level Boundary
 
-Keep model clients, representation readers, and session stores behind supplied component contracts. A backend HTTP handler is permitted as an inbound adapter and may be registered by the host pipeline. Do not add global HTTP hosting or route ownership, durable-persistence ownership, authentication policy, agent execution, or Signal application to this package.
+Architecture may refine, but not redefine, product semantics. Keep state ownership in `back-state`, execution in `back-exec`, shared communication contracts in `comm`, and global HTTP composition in `@flancer32/alarisa`. Clearly label target architecture, current reconnaissance implementation, and undecided research questions.
