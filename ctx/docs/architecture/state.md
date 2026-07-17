@@ -5,20 +5,34 @@
 
 ## Purpose
 
-Defines the authoritative logical-session model and distinguishes it from optional provider LLM session state.
+Defines Control Plane semantic ownership of the logical Interpretation Session, distinguishes it from physical persistence and optional provider state, and records the target lifecycle.
+
+## Semantic Ownership
+
+The Control Plane owns the meaning of the one current logical Interpretation Session for the Principal–Representative interaction. This semantic ownership includes its lifecycle, `continue | start_new` decision, current conversational frame, transition invariants, recovery rules, and the interpretation of all stored session fields. It is an accepted architecture decision, not an open question.
+
+No Case, provider, or storage implementation owns session semantics. A Case may participate in a session but never creates a separate current session. A Provider LLM Session is metadata beneath the logical session, never its authority.
 
 ## Logical Interpretation Session
 
-Alarisa owns exactly one current logical Interpretation Session for the Principal–Representative interaction. It is authoritative for conversational continuity and reconstructable from package-controlled data. It may hold a session identity, current conversational frame, bounded connected-Message history, unresolved references and temporary alternatives, pending questions, expected next move, relevant Case relations, and non-authoritative provider metadata.
+The logical session is the authoritative and reconstructable continuity concept defined by the Control Plane. Its record may contain a session identity, current conversational frame, bounded connected-Message history, unresolved references and temporary alternatives, pending questions, expected next move, relevant Case relations, and non-authoritative provider metadata.
 
-The session does not belong to a Case. It may involve zero, one, or many Cases, and a Case may recur in many sessions over time. The exact durable owner of session state is part of the target state boundary; this package must not silently claim durable storage ownership.
+The session may involve zero, one, or many Cases; a Case may recur in many sessions over time. The local frame supports continuation only. A clean new-session interpretation instead starts from a relevant Principal Representation projection, including relevant Principal Model and Principal State projections, together with the current Message and relevant trigger or durable references.
 
-## Lifecycle
+## Physical Persistence Boundary
 
-- On `continue`, preserve and update the current frame and its useful local meaning.
-- On `start_new`, replace the current frame while rebuilding context from relevant Principal Representation, Principal State, trigger context, and the current Message.
+The physical durable-storage placement is intentionally open. `alarisa-back-state`, another infrastructure store, or an adapter injected into `alarisa-back-control` may retain the session record. The Session Manager controls the port's semantic contract and lifecycle policy; persistence merely records or restores that data.
+
+The storage placement is the only unresolved ownership question here. It must support reconstruction without a provider session and must not replace the one logical-session model with provider-specific identities or simultaneous active session records.
+
+## Lifecycle and Context Transition
+
+- On `continue`, retain and update the current frame's useful local meaning after the final proposal passes interpretation policy and the Control Plane authorizes the transition.
+- On deterministic pre-session evidence for `start_new`, create a clean candidate frame for context construction before Primary; do not include the prior local history.
+- On a `start_new` proposal produced from provisional current-session context, do not replace the current record or accept its semantic meaning. Rebuild a clean context and reinterpret the Message before Gate evaluation.
+- On an accepted new-session outcome, replace the current frame while preserving relevant durable continuity through Principal Representation and explicitly referenced durable information.
 - When provider state is unavailable, reconstruct logical continuity without it.
-- Do not model simultaneous active logical sessions or infer a new one solely from a Case, reply link, or elapsed time.
+- Do not infer a new session solely from a Case, reply link, or elapsed time, and do not model simultaneous active logical sessions.
 
 ## Provider LLM Session
 
@@ -28,4 +42,4 @@ A provider session may be renewed for a new logical session, provider limitation
 
 ## Current Exploratory State
 
-The current in-memory adapter stores one process-local value only. The `Plane` writes an identifier, timestamps, local Message snippets, pending questions, expected next move, and Case identifiers after a valid selected proposal. It has no durable reconstruction, conversational-frame model, provider metadata, or provider adapter. This demonstrates the single-current-value shape, not the target state design.
+The current in-memory adapter stores one process-local value only. The `Plane` writes an identifier, timestamps, local Message snippets, pending questions, expected next move, and Case identifiers after a valid selected proposal. It has no durable reconstruction, Control Plane semantic session manager, candidate transition lifecycle, provider metadata, or provider adapter. This demonstrates the single-current-value shape, not the target state design.

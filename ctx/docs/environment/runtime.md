@@ -15,9 +15,9 @@ Normal verification requires no network, provider account, credential, HTTP list
 
 ## Target Operational Constraints
 
-Message Interpretation normally participates in synchronous human interaction. The normal path should favour compact context, short structured output, bounded timeouts, appropriate prompt caching, and provider-session reuse where useful. Escalation should occur only when justified by interpretation policy.
+Message Interpretation normally participates in synchronous human interaction. The normal path should favour compact context, short structured output, bounded timeouts, appropriate prompt caching, and provider-session reuse where useful. Escalation should occur only when justified by interpretation policy. When provisional current-session interpretation semantically detects `start_new`, the required clean-context re-interpretation is an accepted quality cost rather than an avoidable retry.
 
-Do not infer fixed production latency or cost budgets from the current tests. Before policy is tightened, functional reconnaissance must measure Primary latency, escalated latency, model and token cost, context size, escalation rate, malformed-output rate, clarification rate, and quality on known scenarios.
+Do not infer fixed production latency or cost budgets from the current tests. Before policy is tightened, functional reconnaissance must measure Primary latency, clean-context re-interpretation latency, escalated latency, model and token cost, context size, escalation rate, malformed-output rate, clarification rate, and quality on known scenarios.
 
 ## Boundary
 

@@ -15,7 +15,7 @@ Maps the present reconnaissance implementation to the target Message Interpretat
 
 - `src/Plane.mjs` — one exploratory component that currently combines coordination, session shortcut policy, context construction, model invocation, embedded Gate logic, and provisional result selection.
 - `src/Proposal.mjs` — partial proposal normalizer and validator for the deterministic slice.
-- `src/Adapter/InMemoryPrincipalRepresentationReader.mjs` — process-local reader returning supplied representation, state, and Cases.
+- `src/Adapter/InMemoryPrincipalRepresentationReader.mjs` — process-local reader returning all supplied data rather than a relevance projection.
 - `src/Adapter/InMemoryInterpretationSessionStore.mjs` — process-local store for one current session value.
 - `src/Adapter/ScriptedModelClient.mjs` — deterministic Primary or Deep response source for probes and tests.
 
@@ -25,4 +25,4 @@ Maps the present reconnaissance implementation to the target Message Interpretat
 
 The target Coordinator, Session Manager, Context Builder, Primary Interpreter, Gate, Deep Interpreter, and Normalizer / Validator are documented in [architecture/structure.md](../architecture/structure.md). They are not separate current source modules.
 
-The current reader ignores request relevance and returns all supplied data. The current session store is not durable. The current Gate is embedded. The current Deep path does not compare or arbitrate against Primary. No source module accepts transport input, owns Principal Representation, commits a Signal, mutates Activity or Cases, runs execution work, or provides a production provider adapter. These are intentional documentation-visible gaps, not implementation claims.
+The current reader ignores request relevance and returns all supplied data. The current session store is not durable. The current `Plane` pre-selects continuity with reply/time shortcuts and does not implement semantic `start_new` rebuild-and-reinterpret behaviour. The current Gate is embedded. The current Deep path does not compare or arbitrate against Primary. No source module accepts transport input, owns Principal Representation, commits a Signal, mutates Activity or Cases, runs execution work, or provides a production provider adapter. These are intentional documentation-visible gaps, not implementation claims.

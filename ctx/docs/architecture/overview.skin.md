@@ -5,29 +5,31 @@
 
 ## Purpose
 
-Keep the target Control Plane architecture distinct from the current Message Interpretation experiment.
+Alarisa serves one Principal through one Representative. Its server-side Control Plane turns an accepted Principal Message into a safe next move without letting a model, provider, or store decide what is true.
 
 ## Mental Model
 
-Interpretation prepares a proposal; the Control Plane governs whether that meaning can affect Alarisa's next move. State, execution, communication, and host composition remain separate owners.
+Message Interpretation flow: accepted Message → continuity → Context → Primary → Gate → optional Deep → final Semantic Interpretation Proposal → Control Plane decision. A `start_new` result from current context requests clean context and re-interpretation before final Gate evaluation.
+
+One logical session may involve several Cases. Principal Representation provides durable basis through Model and State projections; provider LLM sessions are recoverable optimisations. Owners commit authorized durable changes.
 
 ## Scope
 
 Includes:
 
-- Target interpretation components and their responsibility boundaries.
-- Explicit current implementation status and research gaps.
+- Target components, session policy, and authority boundaries.
+- Gaps in the current deterministic exploration.
 
 Excludes:
 
-- Treating model output as authoritative application.
-- Turning package boundaries into separately deployed services.
+- Provider sessions as continuity truth or model output as Signal.
+- Direct Control Plane ownership of all durable state or execution.
 
 ## Invariants
 
-- Control Plane owns interpretation policy, not durable state or execution.
-- One logical session remains authoritative over any provider session.
-- A valid Deep response still requires comparison and control validation.
+- The Control Plane semantically owns the one current logical Interpretation Session.
+- `start_new` found in current context requires rebuild and re-interpretation.
+- A Deep result still needs comparison, Gate evaluation, and authorization.
 
 ## Agent Document
 

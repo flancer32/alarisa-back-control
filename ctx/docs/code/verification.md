@@ -22,6 +22,6 @@ The ADSM validator must report no errors or warnings. The ESM validator must rep
 
 ## Current Coverage
 
-The deterministic suite covers a continued current session, replacement after the implemented gap shortcut, reply-linked continuation in the current shortcut, Primary acceptance, ambiguity and other escalation conditions, selected Deep output, clarification, timeout failure, proposal enum validation, multiple Cases within a session, and deterministic probe output.
+The deterministic suite covers a continued current session, replacement after the implemented pre-Primary gap shortcut, reply-linked continuation in the current shortcut, Primary acceptance, ambiguity and other escalation conditions, selected Deep output, clarification, timeout failure, proposal enum validation, multiple Cases within a session, and deterministic probe output.
 
-This coverage validates the current slice only. It does not prove target semantic session selection, relevance-based state retrieval, strict missing-field handling, provider recovery, Primary/Deep arbitration, accepted ingress, durable state, or Control Plane authority application. Those remain implementation work described at the architecture level.
+This coverage validates the current slice only. It does not prove target semantic session selection with clean-context re-interpretation, relevance-based state retrieval, strict missing-field handling, provider recovery, Primary/Deep arbitration, accepted ingress, durable state, or Control Plane authorization and owner-side commitment. Those remain implementation work described at the architecture level.

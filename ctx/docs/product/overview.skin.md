@@ -5,29 +5,31 @@
 
 ## Purpose
 
-Keep the package oriented around the future Control Plane while treating Message Interpretation as its current research slice.
+Alarisa serves one Principal through one Representative. Control Plane decides what a received Message may mean and what Alarisa may safely do next.
 
 ## Mental Model
 
-Alarisa represents one Principal. An accepted Message is evidence, not authority: interpretation produces a proposal that the Control Plane must still govern.
+Message Interpretation is the slice. It reads an accepted Principal Message in bounded context and returns a Semantic Interpretation Proposal, not a fact or command. State and execution keep ownership; Control Plane authorizes effects and coordinates commitment.
+
+Principal Representation is Alarisa's durable basis: Principal Model holds stable knowledge and Principal State the situation. The Control Plane semantically owns the one current Interpretation Session; an adapter may persist it, while provider LLM sessions only optimize it.
 
 ## Scope
 
 Includes:
 
-- Control Plane purpose and Message Interpretation reconnaissance.
-- Boundaries with state, execution, communication, and host composition.
+- The future Control Plane and current Message Interpretation exploration.
+- Boundaries with state, execution, and communication.
 
 Excludes:
 
-- Direct state or Signal commitment by a model response.
-- Claims that exploratory code is the complete production architecture.
+- Model-authorized Signals or direct mutations.
+- Treating exploratory code as the complete production architecture.
 
 ## Invariants
 
-- One Principal, one Representative, one current logical Interpretation Session.
-- A provider session and a Case never become the authority for conversational continuity.
-- A proposal remains provisional until Control Plane validation and application.
+- One Principal, one Representative, and one current logical Interpretation Session.
+- A Message is evidence; a Signal requires authorization and owner-side commitment.
+- A Case and a provider session never define conversational truth.
 
 ## Agent Document
 
