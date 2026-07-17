@@ -19,6 +19,6 @@
 ## Host Repository
 
 - `src/` — provider-neutral TeqFW components and deterministic adapters.
-- `bin/probe.mjs` — standalone exploration entry point.
+- `bin/probe.mjs` — deterministic local verification entry point.
 - `scenarios/` — deterministic probe inputs.
 - `test/` — deterministic tests.

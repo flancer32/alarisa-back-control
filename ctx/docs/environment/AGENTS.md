@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines the intentionally small runtime boundary for the deterministic reconnaissance.
+Defines the intentionally small runtime boundary for deterministic verification of this backend module.
 
 ## Level Map
 
@@ -10,4 +10,4 @@ Defines the intentionally small runtime boundary for the deterministic reconnais
 
 ## Level Boundary
 
-Document only conditions needed to run or verify this package. Deployment, HTTP hosting, authentication, databases, and provider-account operations belong to the parent project or a future accepted package.
+Document only conditions needed to run or verify this package. Deployment, HTTP listener hosting, authentication policy, databases, and provider-account operations belong to the host or their owning backend modules; this package may provide a pipeline handler for host registration.

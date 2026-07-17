@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines the accepted meaning and limits of the Control Plane interpretation reconnaissance.
+Defines the accepted meaning and limits of the Control Plane Message Interpreter module.
 
 ## Level Map
 
@@ -11,4 +11,4 @@ Defines the accepted meaning and limits of the Control Plane interpretation reco
 
 ## Level Boundary
 
-Do not introduce production authority, authentication, persistence, execution, or Signal-commit semantics here. Architecture may refine these accepted boundaries but must not weaken them.
+Do not introduce authority, authentication-policy, persistence ownership, execution, or Signal-commit semantics here. Architecture may define an inbound HTTP adapter, but it must not turn this module into the global HTTP host or trust-policy owner.

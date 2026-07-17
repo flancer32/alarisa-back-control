@@ -1,8 +1,8 @@
 # @flancer32/alarisa-back-control
 
-Functional reconnaissance for Alarisa's server-side Control Plane Message Interpretation slice.
+Server-side Control Plane Message Interpreter module for the Alarisa modular monolith.
 
-It accepts a Principal Message, reconstructs a logical interpretation context, selects a low-latency Primary or escalated Deep interpretation, applies deterministic quality gates, and returns a validated Semantic Interpretation Proposal. It is **not** production Control Plane functionality: it does not expose HTTP, authenticate, persist production data, execute agents, commit Signals, or mutate Principal Representation.
+It accepts an Accepted Principal Message, reconstructs a logical interpretation context, selects a low-latency Primary or escalated Deep interpretation, applies deterministic quality gates, and returns a validated Semantic Interpretation Proposal. The package may provide a Teq Web inbound handler using the shared `@flancer32/alarisa-comm` contracts; the host application registers it in the request pipeline. It does not own global HTTP hosting, authentication policy, durable persistence, agent execution, Signal commitment, or Principal Representation mutation.
 
 ## Run
 
@@ -11,6 +11,10 @@ npm install
 npm test
 npm run probe -- scenarios/continuous-discussion.json
 ```
+
+## Local comm development
+
+When the sibling `alarisa-comm` repository is available, run `npm run dev:link-comm` to replace the installed package with a local symlink. This is a developer-only setup; `npm ci` restores the GitHub revision locked in `package-lock.json` for CI and deployment.
 
 The probe consumes a scenario with Principal representation, state, optional Cases/current session, messages, fake Primary/Deep responses, and expected properties. It prints session action, compact assembled context, Primary result, gate decision, Deep usage, final proposal, latency, usage, and errors without credentials.
 

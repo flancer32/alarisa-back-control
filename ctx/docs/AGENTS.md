@@ -5,7 +5,7 @@
 
 ## Purpose
 
-Contains authoritative documentation for this functional reconnaissance package.
+Contains authoritative documentation for this working backend module of the Alarisa modular monolith.
 
 ## Level Map
 

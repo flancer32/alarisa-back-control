@@ -1,8 +1,8 @@
 {
   "name": "@flancer32/alarisa-back-control",
   "version": "0.1.0",
-  "description": "Functional reconnaissance for the Alarisa Control Plane message interpretation slice.",
-  "license": "UNLICENSED",
+  "description": "Control Plane Message Interpreter backend module for Alarisa.",
+  "license": "Apache-2.0",
   "private": true,
   "type": "module",
   "types": "types.d.ts",
@@ -14,9 +14,12 @@
     ]
   },
   "dependencies": {
+    "@flancer32/alarisa-comm": "github:flancer32/alarisa-comm#main",
+    "@flancer32/teq-web": "^0.15.0",
     "@teqfw/di": "^2.7.0"
   },
   "scripts": {
+    "dev:link-comm": "npm link ../alarisa-comm",
     "test": "node --test",
     "probe": "node ./bin/probe.mjs"
   }

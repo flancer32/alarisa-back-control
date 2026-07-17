@@ -14,6 +14,6 @@ The software product is outside `ctx/`. The cognitive context in `ctx/` is the a
 
 ## Boundaries
 
-This package is a standalone functional reconnaissance. It must not acquire HTTP, UI, database, authentication, task-orchestration, or committed-Signal responsibilities.
+This package is a working backend module of the Alarisa modular monolith. It may provide an inbound HTTP pipeline handler, which the host composition root registers. It must not acquire UI, global HTTP hosting or route ownership, database ownership, authentication policy, task orchestration, or committed-Signal responsibilities.
 
 Do not publish the package while `private` is `true`.

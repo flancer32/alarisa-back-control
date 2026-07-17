@@ -2,7 +2,8 @@
 
 ## Terms
 
-- **Principal Message** — an input message supplied to the interpretation slice.
+- **Principal Message** — communication from the Principal. Its transport shape is a shared `@flancer32/alarisa-comm` contract.
+- **Accepted Principal Message** — a Principal Message for which an ingress port has established the required trust and durable-acceptance facts. This is the Message Interpreter input; it is not a raw HTTP payload.
 - **Principal Representation** — supplied current representation against which the proposal is checked; this package does not mutate it.
 - **Case** — a supplied parent-project work object that a proposal may reference by known identifier.
 - **Logical interpretation session** — package-owned recent-message context selected by reply linkage or time gap.
