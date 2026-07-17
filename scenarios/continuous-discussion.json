@@ -1,0 +1,15 @@
+{
+  "now": "2026-07-17T10:00:00.000Z",
+  "representation": {"name": "Alex", "currentPriority": "Alarisa Control Plane"},
+  "state": {"mode": "discussion"},
+  "cases": [{"id": "case-control", "title": "Control Plane"}, {"id": "case-package", "title": "Package design"}],
+  "currentSession": {"id": "session-existing", "startedAt": "2026-07-17T09:20:00.000Z", "lastMessageAt": "2026-07-17T09:58:00.000Z", "recentMessages": [{"id": "m0", "content": "Discuss package boundaries."}], "pendingQuestions": ["Which repository?"], "expectedNextMove": "proceed", "caseIds": ["case-control", "case-package"]},
+  "messages": [
+    {"id": "m1", "content": "Yes, keep both Cases in the same session.", "createdAt": "2026-07-17T09:59:00.000Z", "channel": "mob"},
+    {"id": "m2", "content": "And add a quick probe.", "createdAt": "2026-07-17T10:00:00.000Z", "channel": "mob"}
+  ],
+  "primaryResponses": {
+    "m1": {"sessionAction":"continue","understoodMeaning":"Keep both Cases in the current logical session.","communicativeIntent":"confirm","referencedEntities":[],"affectedCases":["case-control","case-package"],"semanticChanges":[],"signalCandidates":[],"ambiguities":[],"requiredNextMove":"proceed","confidenceEvidence":["explicit confirmation"],"processingMetadata":{"inputTokens":20}},
+    "m2": {"sessionAction":"continue","understoodMeaning":"Add a standalone fast probe to the package.","communicativeIntent":"request","referencedEntities":[],"affectedCases":["case-control","case-package"],"semanticChanges":[],"signalCandidates":[],"ambiguities":[],"requiredNextMove":"proceed","confidenceEvidence":["connected follow-up"],"processingMetadata":{"inputTokens":14}}
+  }
+}
