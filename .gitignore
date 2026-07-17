@@ -1,3 +1,11 @@
-node_modules/
-.env
-coverage/
+/.agents/
+/.codex/
+/.vscode/
+/**/.env
+/**/node_modules/
+/**/output*.md
+/**/output*.zip
+/**/tmp/
+/node_modules/
+/package-lock.json
+/var/
