@@ -13,7 +13,7 @@ export default class Proposal {
   constructor() {
     /**
      * Creates the minimal proposal shape.
-     * @param {string} [sessionAction] Expected logical-session action.
+     * @param {string} sessionAction Expected logical-session action.
      * @returns {object} Empty proposal.
      */
     this.empty = function (sessionAction = "start_new") {
@@ -27,7 +27,7 @@ export default class Proposal {
     /**
      * Validates and normalizes a model result into a proposal shape.
      * @param {unknown} value Candidate proposal.
-     * @returns {{ok: boolean, errors?: string[], value?: object}} Validation result.
+     * @returns {object} Validation result.
      */
     this.validate = function (value) {
       const errors = [];

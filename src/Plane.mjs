@@ -24,9 +24,9 @@ export default class Plane {
   constructor({proposal}) {
     /**
      * Selects whether the current message continues the logical session.
-     * @param {object|null} current Current logical session.
+     * @param {object} current Current logical session, if one exists.
      * @param {object} message Principal Message.
-     * @param {{now(): Date}} clock Time source.
+     * @param {object} clock Time source.
      * @param {number} gapMs Maximum continuation gap.
      * @returns {string} `continue` or `start_new`.
      */
@@ -38,7 +38,12 @@ export default class Plane {
     }
     /**
      * Assembles the read-only model context.
-     * @param {object} params Context inputs.
+     * @param {object} deps Context inputs.
+     * @param {object} deps.message Principal Message.
+     * @param {object} deps.trigger Trigger context.
+     * @param {object} deps.data Principal data.
+     * @param {object} deps.session Current logical session.
+     * @param {string} deps.sessionAction Selected logical-session action.
      * @returns {object} Model context.
      */
     function buildContext({message, trigger, data, session, sessionAction}) {
@@ -57,8 +62,12 @@ export default class Plane {
     }
     /**
      * Applies deterministic acceptance and escalation conditions.
-     * @param {object} params Gate inputs.
-     * @returns {{decision: string, reasons: string[]}} Gate result.
+     * @param {object} deps Gate inputs.
+     * @param {object} deps.validation Proposal validation result.
+     * @param {object} deps.context Assembled interpretation context.
+     * @param {object} deps.message Principal Message.
+     * @param {string} deps.expectedSessionAction Selected logical-session action.
+     * @returns {object} Gate result.
      */
     function gate({validation, context, message, expectedSessionAction}) {
       if (!validation.ok) return {decision: "escalate", reasons: ["schema_invalid", ...validation.errors]};
@@ -75,7 +84,7 @@ export default class Plane {
     }
     /**
      * Invokes a model client with an explicit timeout.
-     * @param {{complete(request: object): Promise<unknown>}} client Model client.
+     * @param {object} client Model client.
      * @param {object} context Assembled interpretation context.
      * @param {string} mode Requested interpretation mode.
      * @param {number} timeoutMs Timeout in milliseconds.
@@ -92,17 +101,10 @@ export default class Plane {
     /**
      * Creates an interpretation operation with supplied ports and policy values.
      * @param {object} config Operation configuration.
-     * @param {{read(request: object): Promise<object>}} config.principalRepresentationReader Principal-data reader.
-     * @param {{getCurrent(): Promise<object|null>, save(session: object): Promise<object>}} config.interpretationSessionStore Logical-session store.
-     * @param {{complete(request: object): Promise<unknown>}} config.primaryModelClient Primary model client.
-     * @param {{complete(request: object): Promise<unknown>}} [config.deepModelClient] Deep model client.
-     * @param {{now(): Date}} [config.clock] Time source.
-     * @param {{debug(message: string, data: object): void}} [config.logger] Diagnostic logger.
-     * @param {number} [config.sessionGapMs] Maximum continuation gap.
-     * @param {number} [config.modelTimeoutMs] Per-model timeout.
-     * @returns {{interpretMessage(request: object): Promise<object>}} Interpretation operation.
+     * @returns {object} Interpretation operation.
      */
-    this.create = function ({principalRepresentationReader, interpretationSessionStore, primaryModelClient, deepModelClient = primaryModelClient, clock = {now: () => new Date()}, logger = {debug: () => {}}, sessionGapMs = 30 * 60 * 1000, modelTimeoutMs = 10_000} = {}) {
+    this.create = function (config = {}) {
+      const {principalRepresentationReader, interpretationSessionStore, primaryModelClient, deepModelClient = primaryModelClient, clock = {now: () => new Date()}, logger = {debug: () => {}}, sessionGapMs = 30 * 60 * 1000, modelTimeoutMs = 10_000} = config;
       for (const [name, value] of Object.entries({principalRepresentationReader, interpretationSessionStore, primaryModelClient})) if (!value) throw new Error(`${name} is required`);
       return Object.freeze({
         /**

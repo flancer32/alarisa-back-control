@@ -7,16 +7,16 @@
 
 export default class ScriptedModelClient {
   /**
-   * @param {object} [responses] Responses indexed by mode, message identifier, or both.
+   * @param {object} responses Responses indexed by mode, message identifier, or both.
    */
   constructor(responses = {}) {
     const calls = [];
     /** @returns {object[]} Recorded model invocations. */
     this.getCalls = function () { return [...calls]; };
     /**
-     * @param {object} request Model request.
-     * @param {object} request.context Assembled interpretation context.
-     * @param {string} request.mode Requested interpretation mode.
+     * @param {object} deps Model request.
+     * @param {object} deps.context Assembled interpretation context.
+     * @param {string} deps.mode Requested interpretation mode.
      * @returns {Promise<unknown>} Scripted response.
      */
     this.complete = async function ({context, mode}) {
