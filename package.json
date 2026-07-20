@@ -21,6 +21,7 @@
   "scripts": {
     "dev:link-comm": "npm link ../alarisa-comm",
     "test": "node --test",
-    "probe": "node ./bin/probe.mjs"
+    "probe": "node ./bin/probe.mjs",
+    "probe:openai": "node ./bin/probe-openai.mjs"
   }
 }

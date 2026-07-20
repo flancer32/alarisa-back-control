@@ -27,9 +27,9 @@ Interpretation Session storage may be delegated to `alarisa-back-state`, another
 
 ## Current Exploratory Slice
 
-The present implementation is deliberately narrower than the target. `Plane.mjs` coordinates a supplied reader, a single in-memory session-store contract, scripted Primary and Deep model clients, a proposal validator, and an embedded Gate. It returns a proposal and has no writer for Signals, Activity, Principal Representation, Cases, or execution.
+The present implementation is deliberately narrower than the target. `Plane.mjs` coordinates a supplied reader, a single in-memory session-store contract, scripted Primary and Deep model clients, an OpenAI Primary-only smoke adapter, a proposal validator, and an embedded Gate. It returns a proposal and has no writer for Signals, Activity, Principal Representation, Cases, or execution.
 
-This slice demonstrates one current session value, provider-neutral adapters, Primary then optional Deep handling, bounded timeout, and deterministic probes. It does not implement accepted ingress, semantic session-transition detection and re-interpretation, durable or relevance-aware state retrieval, separate target components, a provider-session adapter, a production model client, Deep-result comparison, or Control Plane authorization and coordinated commitment.
+This slice demonstrates one current session value, provider-neutral adapters, Primary then optional Deep handling, bounded timeout, deterministic probes, and one bounded OpenAI smoke path over synthetic public data. It does not implement accepted ingress, semantic session-transition detection and re-interpretation, durable or relevance-aware state retrieval, separate target components, provider-session reuse, a production model client, Deep-result comparison, or Control Plane authorization and coordinated commitment.
 
 ## Architectural Status Rules
 

@@ -121,13 +121,16 @@ export default class Plane {
           const sessionAction = decideSession(current, message, clock, sessionGapMs);
           const context = buildContext({message, trigger, data, session: current, sessionAction});
           const primaryRaw = await safeComplete(primaryModelClient, context, "primary", modelTimeoutMs);
+          const primaryDiagnostics = primaryModelClient.getLastDiagnostics?.() ?? null;
           const primaryValidation = primaryRaw.error ? {ok: false, errors: [primaryRaw.error]} : proposal.validate(primaryRaw);
           let gateResult = gate({validation: primaryValidation, context, message, expectedSessionAction: sessionAction});
           let finalValidation = primaryValidation;
           let deep = null;
+          let deepDiagnostics = null;
           if (gateResult.decision === "escalate") {
             const deepRaw = await safeComplete(deepModelClient, context, "deep", modelTimeoutMs);
             deep = deepRaw;
+            deepDiagnostics = deepModelClient.getLastDiagnostics?.() ?? null;
             const deepValidation = deepRaw.error ? {ok: false, errors: [deepRaw.error]} : proposal.validate(deepRaw);
             if (deepValidation.ok) { finalValidation = deepValidation; gateResult = {decision: deepValidation.value.requiredNextMove === "clarify" ? "clarify" : "accept", reasons: ["deep_proposal_selected", ...gateResult.reasons]}; }
             else { finalValidation = deepValidation; gateResult = {decision: "fail", reasons: ["deep_validation_failed", ...deepValidation.errors]}; }
@@ -139,7 +142,7 @@ export default class Plane {
             await interpretationSessionStore.save(next);
           }
           logger.debug("message interpreted", {messageId: message.id, decision: gateResult.decision});
-          return {sessionAction, context, primary: primaryValidation.ok ? primaryValidation.value : {errors: primaryValidation.errors}, gate: gateResult, deep, proposal: resultProposal, latencyMs: clock.now().getTime() - startedAt.getTime()};
+          return {sessionAction, context, primary: primaryValidation.ok ? primaryValidation.value : {errors: primaryValidation.errors}, gate: gateResult, deep, proposal: resultProposal, providerDiagnostics: {primary: primaryDiagnostics, deep: deepDiagnostics}, latencyMs: clock.now().getTime() - startedAt.getTime()};
         },
       });
     };

@@ -18,6 +18,8 @@ Maps the present reconnaissance implementation to the target Message Interpretat
 - `src/Adapter/InMemoryPrincipalRepresentationReader.mjs` — process-local reader returning all supplied data rather than a relevance projection.
 - `src/Adapter/InMemoryInterpretationSessionStore.mjs` — process-local store for one current session value.
 - `src/Adapter/ScriptedModelClient.mjs` — deterministic Primary or Deep response source for probes and tests.
+- `src/Config/OpenAiSmoke.mjs` — immutable DI runtime configuration for the bounded live OpenAI smoke path.
+- `src/Adapter/OpenAIResponsesModelClient.mjs` — Primary-only OpenAI Responses adapter using strict proposal structured output and safe provider diagnostics.
 
 `bin/probe.mjs` and `test/Bootstrap.mjs` own Node.js composition and TeqFW namespace discovery. They may use Node imports because they are composition boundaries rather than source components.
 
@@ -25,4 +27,4 @@ Maps the present reconnaissance implementation to the target Message Interpretat
 
 The target Coordinator, Session Manager, Context Builder, Primary Interpreter, Gate, Deep Interpreter, and Normalizer / Validator are documented in [architecture/structure.md](../architecture/structure.md). They are not separate current source modules.
 
-The current reader ignores request relevance and returns all supplied data. The current session store is not durable. The current `Plane` pre-selects continuity with reply/time shortcuts and does not implement semantic `start_new` rebuild-and-reinterpret behaviour. The current Gate is embedded. The current Deep path does not compare or arbitrate against Primary. No source module accepts transport input, owns Principal Representation, commits a Signal, mutates Activity or Cases, runs execution work, or provides a production provider adapter. These are intentional documentation-visible gaps, not implementation claims.
+The current reader ignores request relevance and returns all supplied data. The current session store is not durable. The current `Plane` pre-selects continuity with reply/time shortcuts and does not implement semantic `start_new` rebuild-and-reinterpret behaviour. The current Gate is embedded. The current Deep path does not compare or arbitrate against Primary. The OpenAI adapter is a bounded synthetic-data smoke probe, not a production provider integration: it supports only Primary and never provides provider-session reuse. No source module accepts transport input, owns Principal Representation, commits a Signal, mutates Activity or Cases, or runs execution work. These are intentional documentation-visible gaps, not implementation claims.

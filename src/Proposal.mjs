@@ -11,6 +11,26 @@ const MOVES = new Set(["proceed", "clarify", "wait"]);
 export default class Proposal {
   /** Creates the stateless proposal-schema service. */
   constructor() {
+    /** @returns {object} Strict JSON Schema for provider structured output. */
+    this.getJsonSchema = function () {
+      return {
+        type: "object", additionalProperties: false,
+        properties: {
+          sessionAction: {type: "string", enum: ["continue", "start_new"]},
+          understoodMeaning: {type: "string"},
+          communicativeIntent: {type: "string"},
+          referencedEntities: {type: "array", items: {type: "object", additionalProperties: false, properties: {id: {type: "string"}, name: {type: "string"}, type: {type: "string"}, contradictsRepresentation: {type: "boolean"}}, required: ["id", "name", "type", "contradictsRepresentation"]}},
+          affectedCases: {type: "array", items: {type: "string"}},
+          semanticChanges: {type: "array", items: {type: "object", additionalProperties: false, properties: {type: {type: "string"}, target: {type: "string"}, value: {type: "string"}}, required: ["type", "target", "value"]}},
+          signalCandidates: {type: "array", items: {type: "object", additionalProperties: false, properties: {type: {type: "string"}, meaning: {type: "string"}, consequential: {type: "boolean"}}, required: ["type", "meaning", "consequential"]}},
+          ambiguities: {type: "array", items: {type: "string"}},
+          requiredNextMove: {type: "string", enum: ["proceed", "clarify", "wait"]},
+          confidenceEvidence: {type: "array", items: {type: "string"}},
+          processingMetadata: {type: "object", additionalProperties: false, properties: {needsMoreContext: {type: "boolean"}}, required: ["needsMoreContext"]},
+        },
+        required: ["sessionAction", "understoodMeaning", "communicativeIntent", "referencedEntities", "affectedCases", "semanticChanges", "signalCandidates", "ambiguities", "requiredNextMove", "confidenceEvidence", "processingMetadata"],
+      };
+    };
     /**
      * Creates the minimal proposal shape.
      * @param {string} sessionAction Expected logical-session action.

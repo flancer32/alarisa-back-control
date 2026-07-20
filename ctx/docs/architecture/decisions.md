@@ -21,6 +21,10 @@ Separates accepted architecture decisions from questions being explored by the c
 - Primary Message Interpreter is the low-latency default; Deep Message Interpreter is the escalation path; Interpretation Gate makes an explicit quality decision.
 - The interpreter emits a Semantic Interpretation Proposal, not an authoritative Signal or state mutation. The Control Plane validates and authorizes permitted semantic effects, then coordinates their commitment through the durable-state owner.
 - Provider LLM sessions are replaceable implementation optimisations beneath the logical-session model.
+- OpenAI may be used as the first provider adapter during functional reconnaissance. It remains behind the provider-neutral model-client boundary and does not alter Control Plane authority, logical-session semantics, or durable-state ownership.
+- Live provider reconnaissance may send only public Principal data: data that is not confidential. A complete package scenario run may consume at most USD 0.10 in aggregate. Its purpose is to discover the main design directions, not to provide exhaustive functional verification.
+- The first live smoke path uses one synthetic public scenario and Primary interpretation only. If its Gate requests escalation, the attempt fails locally without a paid Deep request.
+- Live OpenAI configuration is an immutable Control-package DI component. Composition maps externally supplied runtime values into its factory before resolving adapters; provider adapters do not read process environment or environment files.
 
 ## Functional Reconnaissance Questions
 

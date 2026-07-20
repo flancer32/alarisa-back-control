@@ -21,9 +21,23 @@ Message Interpretation begins only after ingress has accepted a Principal Messag
 | model clients | provider-specific invocation and optional Provider LLM Session mechanics | adapt behind provider-neutral interpreter contracts |
 | wider Control Plane | proposal validation, semantic-effect authorization, clarification, and next control decision | consumes the provisional proposal and coordinates authorized commitment; no model result bypasses it |
 | `alarisa-back-exec` | agent, worker, tool, and execution work | receives only later, bounded work prepared by control decisions |
-| `@flancer32/alarisa` | host composition, global routes, listener and runtime | composes package-owned handlers or adapters; is not owned by this package |
+| `@flancer32/alarisa` | host composition, global routes, listener and runtime | composes package-owned handlers or adapters; currently uses the built-in `@flancer32/teq-web` Node.js `http`/`http2` server and request pipeline; is not owned by this package |
 
 Physical session persistence may use `alarisa-back-state`, another infrastructure store, or an injected adapter. This placement remains undecided; it does not affect the Control Plane's semantic ownership of the Interpretation Session.
+
+## Provider Reconnaissance Boundary
+
+OpenAI may be the first real provider adapter used during functional reconnaissance. It receives only a prepared Interpretation Context through the provider-neutral model-client contract and returns provider output or diagnostics for normalization. It does not receive raw transport payloads, own session semantics, authorize effects, or commit state.
+
+Live reconnaissance may send only public Principal data: data that is not confidential. The aggregate provider cost for one run of all package scenarios must not exceed USD 0.10. These bounded probes explore the main design directions; they are not exhaustive functional verification.
+
+The initial adapter implements `complete({context, mode})` and invokes the OpenAI Responses API with a strict JSON Schema for the common Semantic Interpretation Proposal. The common proposal service owns that schema and remains the local structural validator. Provider response identifiers, model name, token usage, and request identifiers are diagnostics only; they are not logical-session truth or semantic meaning.
+
+The OpenAI adapter receives an immutable DI configuration containing the model, credential, base URL, output limit, and cost policy. A composition root maps externally supplied runtime values into that configuration before adapter resolution. The adapter never reads process environment or an environment file itself.
+
+## Host Transport Reference
+
+The host's current web transport is documented by the installed dependency at `node_modules/@flancer32/teq-web/ai`. Read its `AGENTS.md`, `overview.md`, and `abstractions.md` for the supported TeqFW server and pipeline interface. This reference records the host transport used for integration orientation only; its runtime configuration, listener lifecycle, routes, and trust policy remain owned by `@flancer32/alarisa`.
 
 ## Authorization and Commitment Route
 
