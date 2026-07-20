@@ -1,8 +1,11 @@
 # Code Documentation
 
+- Path: `ctx/docs/code/AGENTS.md`
+- Changed: `20260717`
+
 ## Purpose
 
-Maps the accepted architecture to source conventions and verification.
+Maps the current exploratory implementation to the accepted architecture and defines its verification boundary.
 
 ## Level Map
 
@@ -11,4 +14,4 @@ Maps the accepted architecture to source conventions and verification.
 
 ## Level Boundary
 
-`src/` follows the TeqFW ESM module rules. Tests and the executable CLI may use Node.js imports as composition and test boundaries; source components must not use static imports or manual container lookup.
+Describe implemented facts and verification only. Do not redefine product or target architecture to fit an exploratory shortcut. `src/` follows TeqFW ESM rules; tests and the probe may use Node.js imports as composition boundaries, while source components must not use static imports or manual container lookup.

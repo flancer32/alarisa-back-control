@@ -1,0 +1,8 @@
+{
+  "now": "2026-07-20T10:00:00.000Z",
+  "representation": {"name": "Public Test Principal", "currentPriority": "Understand the message"},
+  "state": {"mode": "public-smoke"},
+  "cases": [{"id": "case-smoke", "title": "Public smoke scenario"}],
+  "currentSession": {"id": "session-smoke", "startedAt": "2026-07-20T09:00:00.000Z", "lastMessageAt": "2026-07-20T09:58:00.000Z", "recentMessages": [{"id": "m0", "content": "We are checking a public synthetic scenario."}], "pendingQuestions": [], "expectedNextMove": "proceed", "caseIds": ["case-smoke"]},
+  "messages": [{"id": "m1", "content": "Yes, continue this public smoke scenario.", "createdAt": "2026-07-20T09:59:00.000Z", "channel": "smoke"}]
+}

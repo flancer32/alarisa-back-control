@@ -5,16 +5,16 @@
 
 ## Purpose
 
-Contains authoritative documentation for this working backend module of the Alarisa modular monolith.
+Contains the authoritative package context for `@flancer32/alarisa-back-control`.
 
 ## Level Map
 
-- `architecture/` — component boundaries and interpretation behaviour.
-- `code/` — TeqFW implementation and verification rules.
-- `environment/` — supported local runtime conditions.
-- `product/` — package purpose, terms, and accepted outcomes.
+- `architecture/` — target Control Plane structure, behaviour, state, boundaries, constraints, and decisions.
+- `code/` — current source mapping and verification.
+- `environment/` — runtime assumptions and measurement boundary.
+- `product/` — accepted meaning, domain model, and terminology.
 - `filesystem.md` — context-root navigation only.
 
 ## Level Boundary
 
-Read and refine documents in the order product, architecture, environment, code. Keep documents in English and consistent with implemented behaviour. Ordinary documents are agent-facing; no semantic skins currently control this package's meaning. Escalate an upstream gap instead of defining product meaning in a lower level.
+Read and refine documents in the order product, architecture, environment, and code. Keep documents in English. Ordinary documents are agent-facing; paired `*.skin.md` documents are human-facing semantic controls and must be read before their paired document is changed. Do not let lower levels redefine product meaning or represent exploratory code as target architecture. Escalate an upstream gap instead of inventing it downstream.

@@ -7,15 +7,13 @@
 
 export default class InMemoryPrincipalRepresentationReader {
   /**
-   * @param {object} [data] Supplied Principal data.
-   * @param {object} [data.representation] Current Principal representation.
-   * @param {object} [data.state] Current Principal state.
-   * @param {object[]} [data.cases] Relevant Cases.
+   * @param {object} config Supplied Principal data.
    */
-  constructor({representation = {}, state = {}, cases = []} = {}) {
+  constructor(config = {}) {
+    const {representation = {}, state = {}, cases = []} = config;
     /**
      * Reads the configured deterministic data.
-     * @returns {Promise<{representation: object, state: object, cases: object[]}>} Principal data.
+     * @returns {Promise<object>} Principal data.
      */
     this.read = async function () { return {representation, state, cases}; };
   }

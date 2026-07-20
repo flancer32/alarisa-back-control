@@ -7,7 +7,7 @@
 
 export default class InMemoryInterpretationSessionStore {
   /**
-   * @param {object|null} [current] Initial logical session.
+   * @param {object} current Initial logical session, if one exists.
    */
   constructor(current = null) {
     /** @returns {Promise<object|null>} Current logical session. */
